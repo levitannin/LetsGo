@@ -6,13 +6,21 @@
 package greetings
 //	Declaring a package to collect related functions.
 
-import "fmt"
+import (
+	"fmt"
+	"errors"
+)
 
 //	Hello returns a greeting for the named person.
 //	A function whose name starts with a capital letter can be called
 //		by a function not in the same package.
 //	Known as a "exported name"
-func Hello (name string) string {
+func Hello (name string) (string, error) {
+	//	If no name given, return error message.
+	if name == ""{
+		return "", errors.New("empty name")
+	}
+	
 	//	Return a greeting embeding the name in a message.
 	//	:= operator is a shortcut for declaring an initializing
 	//		a var in one line.  Otherwise below wold be:
@@ -23,5 +31,6 @@ func Hello (name string) string {
 	message := fmt.Sprintf("Hi, %v.  Welcome!", name)
 	//	Sprintf which has a format string, where %v (verb)
 	//		 subbed for name.
-	return message
+
+	return message, nil
 }
