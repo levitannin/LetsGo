@@ -1,4 +1,4 @@
-module hello
+module quote
 
 go 1.15
 
